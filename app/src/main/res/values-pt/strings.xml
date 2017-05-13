@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AcessoAoLARM</string>
+    <string name="credential_text">Credencial</string>
+    <string name="open_activity_text">Clique para Abrir a Porta!</string>
+    <string name="open_menssage">Porta Aberta!</string>
+    <string name="save">Salvar</string>
+    <string name="save_message">Configurações Salvas!</string>
+    <string name="settings_activity_text">Por favor, preencha as informações e clique em salvar.</string>
+    <string name="settings_folder_name" translatable="false">/configuracoes</string>
+    <string name="settings_name">Configurações</string>
+</resources>
