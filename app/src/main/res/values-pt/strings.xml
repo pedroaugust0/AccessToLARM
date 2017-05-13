@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AcessoAoLARM</string>
+    <string name="app_name">Abrir LARM</string>
     <string name="credential_text">Credencial</string>
     <string name="open_activity_text">Clique para Abrir a Porta!</string>
     <string name="open_menssage">Porta Aberta!</string>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AccessToLARM</string>
+    <string name="app_name">Open LARM</string>
     <string name="open_activity_text">Click to Open the Door!</string>
     <string name="open_menssage">Door Opened!</string>
     <string name="settings_name">Settings</string>
