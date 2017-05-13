@@ -3,4 +3,16 @@
     <string name="open_activity_text">Click to Open the Door!</string>
     <string name="open_button">Open</string>
     <string name="open_menssage">Door Opened!</string>
+    <string name="settings_name">Settings</string>
+    <string name="settings_folder_name">/settings</string>
+    <string name="settings_activity_text">Please fill in the information and click save.</string>
+    <string name="ip_example">198.162.200.181</string>
+    <string name="ip_text">IP: </string>
+    <string name="port_text">HOST: </string>
+    <string name="port_example">1234</string>
+    <string name="credential_text">Credential: </string>
+    <string name="credential_example">A34DCV</string>
+    <string name="save">save</string>
+    <string name="save_message">Settings Saved!</string>
 </resources>
+

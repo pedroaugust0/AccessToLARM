@@ -1,6 +1,7 @@
 package compedroaugust0.github.accesstolarm;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
@@ -12,12 +13,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
 
 
-    private static final String LOG_TAG = "AccessToLarm.Main.";
+    private static final String LOG_TAG = "Main.";
 
 
 
@@ -64,6 +66,12 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this, permissions, REQUEST_PERMISSIONS);
         Log.d(LOG_TAG, "onCreate");
 
+        Settings settings = new Settings(this);
+
+        if(!settings.hasSettingFile()){
+            Intent intent = new Intent(this,FillData.class);
+            this.startActivity(intent);
+        }
     }
 
 
@@ -72,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     public void onOpen(View view) {
 
         try{
-            ConnectToServer connectToServer = new ConnectToServer();
+            ConnectToServer connectToServer = new ConnectToServer(this);
             connectToServer.openTheDoor();
         } catch (IOException e) {
             e.printStackTrace();
@@ -84,5 +92,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void onSettings (View view){
+        Intent intent = new Intent(this, FillData.class);
+        this.startActivity(intent);
+
+    }
 }
 

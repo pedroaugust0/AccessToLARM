@@ -19,6 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".FillData">
+            <intent-filter>
+                <action android:name="A2LFillData" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="A2L" />
+            </intent-filter>
+        </activity>
     </application>
 
 
