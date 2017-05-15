@@ -11,7 +11,7 @@
     <string name="port_text" translatable="false">HOST: </string>
     <string name="port_example" translatable="false">1234</string>
     <string name="credential_text">Credential: </string>
-    <string name="credential_example" translatable="false">A34DCV</string>
+    <string name="credential_example" translatable="false">A34DCV9Y</string>
     <string name="save">save</string>
     <string name="save_message">Settings Saved!</string>
 </resources>
