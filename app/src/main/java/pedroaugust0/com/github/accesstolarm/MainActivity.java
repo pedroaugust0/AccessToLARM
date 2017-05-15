@@ -3,6 +3,7 @@ package pedroaugust0.com.github.accesstolarm;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -12,18 +13,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import java.io.IOException;
-
 
 public class MainActivity extends AppCompatActivity {
 
-
     private static final String LOG_TAG = "Main.";
 
-
-
-    /*INICIO TRECHO PARA PERMISSÃO DE GRAVAR ARQUIVO NO EXTERNAL STORAGE E LER
-    * Se nao tiver permissão o aplicativo eh fechado*/
+//  Requisitar permissão do usuário.
     private static final int REQUEST_PERMISSIONS = 300;
 
     private boolean permissionsOfApp = false;
@@ -50,9 +45,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,28 +65,38 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
-
     public void onOpen(View view) {
 
-        try{
-            ConnectToServer connectToServer = new ConnectToServer(this);
-            connectToServer.openTheDoor();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(isConnected()){
+            try{
+                ConnectToServer connectToServer = new ConnectToServer(this);
+                connectToServer.openTheDoor();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Toast.makeText(this, R.string.open_menssage, Toast.LENGTH_SHORT).show();
+
+        } else {
+            Toast.makeText(this, R.string.no_wifi_menssage, Toast.LENGTH_SHORT).show();
+
         }
 
-        Toast.makeText(this, R.string.open_menssage, Toast.LENGTH_SHORT).show();
     }
-
 
     public void onSettings (View view){
         Intent intent = new Intent(this, FillData.class);
         this.startActivity(intent);
 
+    }
+
+    public  boolean isConnected() {
+        boolean connected;
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        connected = connectivityManager.getActiveNetworkInfo() != null
+                && connectivityManager.getActiveNetworkInfo().isAvailable()
+                && connectivityManager.getActiveNetworkInfo().isConnected();
+        return connected;
     }
 }
 

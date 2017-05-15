@@ -7,10 +7,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Created by par on 12/05/17.
+ * Classe/Activity Responsável por preencher os dados para a conexão via Socket
  */
 
 public class FillData extends Activity {
@@ -26,6 +27,24 @@ public class FillData extends Activity {
 
         setContentView(R.layout.activity_fill_data);
         //Inicia o layout da activity
+
+        Settings settings = new Settings(this);
+
+        if(settings.hasSettingFile()) {
+
+            String[] splitSetting = settings.searchSettings();
+
+            EditText ipText, portText, credentialText;
+            ipText = (EditText) findViewById(R.id.ip_edit_text);
+            portText = (EditText) findViewById(R.id.port_edit_text);
+            credentialText = (EditText) findViewById(R.id.credential_edit_text);
+
+            ipText.setText(splitSetting[0]);
+            portText.setText(splitSetting[1]);
+            credentialText.setText(splitSetting[2]);
+
+        }
+
 
     }
 

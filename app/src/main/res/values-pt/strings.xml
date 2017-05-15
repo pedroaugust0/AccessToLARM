@@ -7,6 +7,6 @@
     <string name="save">Salvar</string>
     <string name="save_message">Configurações Salvas!</string>
     <string name="settings_activity_text">Por favor, preencha as informações e clique em salvar.</string>
-    <string name="settings_folder_name" translatable="false">/configuracoes</string>
     <string name="settings_name">Configurações</string>
+    <string name="no_wifi_menssage">Sem acesso à Internet!</string>
 </resources>

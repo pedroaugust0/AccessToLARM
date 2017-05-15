@@ -2,8 +2,9 @@
     <string name="app_name">Open LARM</string>
     <string name="open_activity_text">Click to Open the Door!</string>
     <string name="open_menssage">Door Opened!</string>
+    <string name="no_wifi_menssage">No Internet Access!</string>
     <string name="settings_name">Settings</string>
-    <string name="settings_folder_name">/settings</string>
+    <string name="settings_folder_name" translatable="false">>/settings</string>
     <string name="settings_activity_text">Please fill in the information and click save.</string>
     <string name="ip_example" translatable="false">198.162.200.181</string>
     <string name="ip_text" translatable="false">IP: </string>
