@@ -36,9 +36,10 @@ class Settings {
             appDir = context.getFilesDir();
             Log.i(LOG_TAG, "appDir OK");
         }
-        settingsFile = R.string.settings_name + ".txt";
+
+        settingsFile = context.getResources().getString(R.string.settings_name) + ".txt";
         Log.i(LOG_TAG, "settingsFile: " + settingsFile);
-        pathDir = appDir.getAbsolutePath() + R.string.settings_folder_name;
+        pathDir = appDir.getAbsolutePath() + context.getResources().getString(R.string.settings_folder_name);
         Log.i(LOG_TAG, "pathDir: " + pathDir);
     }
 

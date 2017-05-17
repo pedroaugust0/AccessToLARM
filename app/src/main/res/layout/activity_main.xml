@@ -1,51 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tabHost"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="compedroaugust0.github.accesstolarm.MainActivity">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/open_activity_text"
-            android:layout_gravity="center"
-            android:textColor="#000"
-            android:textAllCaps="true"
-            android:layout_margin="10dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"/>
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/tab1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation ="vertical">
 
 
-        <ImageView
-            android:id="@+id/larm_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="center"
-            android:src="@drawable/open_door_250"
-            android:onClick="onOpen"
-            android:layout_gravity="center"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:text="@string/open_activity_text"
+                        android:textAllCaps="true"
+                        android:textColor="#000"
+                        android:textSize="20dp" />
+
+                    <Button
+                        android:id="@+id/open_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:onClick="onOpen"
+                        android:text="@string/open"
+                        android:textAllCaps="true"
+                        android:layout_below="@+id/textView2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="78dp" />
 
 
-        <Button
-            android:id="@+id/settings_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_name"
-            android:layout_margin="8dp"
-            android:textAllCaps="true"
-            android:onClick="onSettings"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"/>
-    </RelativeLayout>
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/larm_image_view_open"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/larm_logo" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tab2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_activity_text"
+                    android:layout_gravity="center"
+                    android:textAllCaps="true"
+                    android:layout_margin="5dp"
+                    android:textColor="#000"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/ip_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ip_text"
+                        android:layout_gravity="center"
+                        android:textAllCaps="true"
+                        android:layout_margin="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:textColor="#000"/>
+
+                    <EditText
+                        android:id="@+id/ip_edit_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/ip_example"
+                        android:inputType="phone"
+                        android:layout_margin="5dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/por_text_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/port_text"
+                        android:layout_gravity="center"
+                        android:textAllCaps="true"
+                        android:layout_margin="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:textColor="#000"/>
+
+                    <EditText
+                         android:id="@+id/port_edit_text"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:hint="@string/port_example"
+                         android:inputType="phone"
+                         android:layout_margin="5dp"
+                         android:layout_alignParentTop="true"
+                         android:layout_centerHorizontal="true" />
+
+                </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/credential_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/credential_text"
+                            android:layout_gravity="center"
+                            android:textAllCaps="true"
+                            android:layout_margin="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentStart="true"
+                            android:textColor="#000"/>
+
+                        <EditText
+                            android:id="@+id/credential_edit_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/credential_example"
+                            android:inputType="textCapCharacters"
+                            android:layout_margin="5dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true" />
+
+                </RelativeLayout>
 
 
+                <Button
+                    android:id="@+id/save_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save"
+                    android:onClick="onSave"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"/>
 
-</LinearLayout>
+                <ImageView
+                    android:id="@+id/larm_image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/larm_logo" />
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+</TabHost>
+
