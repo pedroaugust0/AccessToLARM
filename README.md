@@ -10,6 +10,7 @@ O aplicativo possui uma *Activity* divida em duas Aba:
         Com apenas o botão de ``ABRIR``, que serve para criar a conexão e mandar a Credencial para o servidor.
         
         Imagem da Aba 1:
+        
         ![Abrir](https://uploaddeimagens.com.br/images/000/919/947/original/A2L-open.jpg?1495028925)
 
   
@@ -17,7 +18,8 @@ O aplicativo possui uma *Activity* divida em duas Aba:
         Com três campos,  ``IP``, ``HOST``, ``CREDENCIAL``, onde o priemiro e o segundo são para inserir os dados do servidor, e o terceiro a credencial que será enviada, e com o botõa ``SALVAR`` o qual salvará os dados, de forma que só é necessário inseri-los uma vez.
          
         Imagem da Aba 2:
-        ![Configuraçes](https://uploaddeimagens.com.br/images/000/919/949/original/A2L-settings.jpg?1495028966)
+        
+        ![Configuraçes](https://uploaddeimagens.com.br/images/000/919/949/original/A2L-settings.jpg?1495028966)
 
 ## Tradução
 O aplicativo possui tradução integral para o Português BR e para *English* US
