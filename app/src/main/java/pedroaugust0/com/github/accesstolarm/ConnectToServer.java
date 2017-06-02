@@ -2,8 +2,6 @@ package pedroaugust0.com.github.accesstolarm;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -15,7 +13,6 @@ import java.net.Socket;
  * Classe responsável por conectar com o Servidor via Socket, e mandar mensagem com
  *  a credencial para abrir a porta.
  */
-
 class ConnectToServer {
 
     private static final String LOG_TAG = "ConnectToServer.";
@@ -46,13 +43,14 @@ class ConnectToServer {
             msgOut = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())),true);
             Log.i(LOG_TAG, "Criou PrintWriter");
             msgOut.print(credential);
-            msgOut.flush();
+            if(!msgOut.checkError()){
+                Log.i(LOG_TAG, "Sem ERRO");
+            }
             msgOut.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
 }
 

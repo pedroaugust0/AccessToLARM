@@ -1,10 +1,12 @@
 package pedroaugust0.com.github.accesstolarm;
 
 import android.Manifest;
-import android.app.ProgressDialog;
-import android.content.Intent;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -20,16 +22,21 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "Main.";
-    ProgressDialog progressDialog;
+
     TabHost abas;
     private boolean hasSettings = true;
+
 //  Requisitar permissão do usuário.
 
+    private WifiManager wifiManager;
 
     private static final int REQUEST_PERMISSIONS = 300;
     private boolean permissionsOfApp = false;
     private String [] permissions = {Manifest.permission.INTERNET,
-                                Manifest.permission.ACCESS_NETWORK_STATE};
+                                Manifest.permission.ACCESS_NETWORK_STATE,
+                                Manifest.permission.CHANGE_NETWORK_STATE,
+                                Manifest.permission.ACCESS_WIFI_STATE,
+                                Manifest.permission.CHANGE_WIFI_STATE};
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -53,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
         abas = (TabHost) findViewById(R.id.tabHost);
         abas.setup();
 
@@ -71,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
 
-        ActivityCompat.requestPermissions(this, permissions, REQUEST_PERMISSIONS);
+//        ActivityCompat.requestPermissions(this, permissions, REQUEST_PERMISSIONS);
         Log.d(LOG_TAG, "onCreate");
 
         Settings settings = new Settings(this);
@@ -79,11 +86,10 @@ public class MainActivity extends AppCompatActivity {
         if (!settings.hasSettingFile()) {
             hasSettings = false;
             abas.setCurrentTab(1);
-            Log.d(LOG_TAG, "Entrou Aqui");
-
         } else {
            updateDataSettings();
         }
+
 
     }
 
@@ -96,18 +102,11 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
 
-            String title = getResources().getString(R.string.loading_title);
-            String message = getResources().getString(R.string.loading_message);
+            // Verificando se WiFi está ligado
+            isWifiOn(this);
 
-
-            progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle(title);
-            progressDialog.setIndeterminate(true);
-            progressDialog.setCancelable(true);
-
-
-
-            if(isConnected()){
+            // Verificando se está no WIFI do LARM
+            if (connectedOnLarm()){
                 Thread buttonsActionsThread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -115,27 +114,69 @@ public class MainActivity extends AppCompatActivity {
                     }
                 },"ButtonsActionsThread");
 
-                progressDialog.show();
-                progressDialog.setMessage(message);
-
                 buttonsActionsThread.start();
+                Toast.makeText(this, R.string.open_menssage, Toast.LENGTH_SHORT).show();
+                finish();
 
             } else {
-                Toast.makeText(this, R.string.no_wifi_menssage, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.erro_wifi_menssage, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.erro_wifi_password, Toast.LENGTH_SHORT).show();
             }
         }
-
     }
 
-    public  boolean isConnected() {
-        boolean connected;
+
+    public void isWifiOn(Context context) {
+
+        wifiManager = (WifiManager) context.getSystemService(context.WIFI_SERVICE);
+        if (!wifiManager.isWifiEnabled()) {
+            wifiManager.setWifiEnabled(true);
+            while (!wifiManager.isWifiEnabled());
+            wifiManager.startScan();
+        }
+    }
+
+
+    public boolean connectedOnLarm(){
+
+        WifiInfo connections;
+        connections = wifiManager.getConnectionInfo();
+        Log.d(LOG_TAG, "SSID: " + connections.getSSID());
+
+        if(connections.getSSID().endsWith("\"LARM\"")){
+            Log.d(LOG_TAG, "on LARM" );
+        } else {
+            Toast.makeText(this, R.string.connectionOnLarm, Toast.LENGTH_SHORT).show();
+
+            String[] splitStrings = new Settings(this).searchSettings();
+
+
+            Log.d(LOG_TAG, "not LARM" );
+            WifiConfiguration wifiConfiguration = new WifiConfiguration();
+            wifiConfiguration.SSID = "\""+"LARM"+"\"";
+            wifiConfiguration.preSharedKey = "\""+splitStrings[3]+"\"";
+            Log.d(LOG_TAG, "splitString[3]: " +splitStrings[3] );
+
+            wifiConfiguration.status = WifiConfiguration.Status.ENABLED;
+            wifiConfiguration.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
+            wifiConfiguration.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
+
+            int wifiId = wifiManager.addNetwork(wifiConfiguration);
+            wifiManager.enableNetwork(wifiId, true);
+            Log.d(LOG_TAG, "fim das config" );
+        }
+
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-        connected = connectivityManager.getActiveNetworkInfo() != null
+        if (connectivityManager.getActiveNetworkInfo() != null
                 && connectivityManager.getActiveNetworkInfo().isAvailable()
-                && connectivityManager.getActiveNetworkInfo().isConnected();
-        return connected;
+                && connectivityManager.getActiveNetworkInfo().isConnected()){
+           connections = wifiManager.getConnectionInfo();
+           if(connections.getSSID().endsWith("\"LARM\"")) {
+               return true;
+           }
+        }
+        return false;
     }
-
 
 
     void connectionRun(){
@@ -146,33 +187,25 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
              e.printStackTrace();
         }
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        progressDialog.dismiss();
     }
 
 
 
     public void onSave(View view) {
-        String newSettings = "198.162.200.181#1234#A34DCV9Y#";
+        String newSettings = "198.162.200.181#1234#A34DCV9Y#KnowNothing!";
 
         EditText newIp = (EditText) findViewById(R.id.ip_edit_text);
         EditText newPort = (EditText) findViewById(R.id.port_edit_text);
         EditText newCredential = (EditText) findViewById(R.id.credential_edit_text);
+        EditText newPassword = (EditText) findViewById(R.id.wifi_edit_text);
 
         if (newIp.getText().length() != 0) {
             newSettings = newIp.getText().toString() + "#" + newPort.getText().toString()
-                    + "#" + newCredential.getText().toString().toUpperCase() + "#";
+                    + "#" + newCredential.getText().toString().toUpperCase() + "#"
+                    + newPassword.getText().toString() + "#";
         }
 
-
-        Log.i(LOG_TAG, "newSettings: " + newSettings);
-
+        Log.d(LOG_TAG, "newSettings: " + newSettings);
         Settings settings = new Settings(this);
         settings.setSettings(newSettings);
 
@@ -180,7 +213,9 @@ public class MainActivity extends AppCompatActivity {
 
         hasSettings = true;
         abas.setCurrentTab(0);
+
     }
+
 
 
     void updateDataSettings(){
@@ -188,15 +223,15 @@ public class MainActivity extends AppCompatActivity {
 
         String[] splitSetting = settings.searchSettings();
 
-        EditText ipText, portText, credentialText;
+        EditText ipText, portText, credentialText, wifiText;
         ipText = (EditText) findViewById(R.id.ip_edit_text);
         portText = (EditText) findViewById(R.id.port_edit_text);
         credentialText = (EditText) findViewById(R.id.credential_edit_text);
-
+        wifiText = (EditText) findViewById(R.id.wifi_edit_text);
         ipText.setText(splitSetting[0]);
         portText.setText(splitSetting[1]);
         credentialText.setText(splitSetting[2]);
-
+        wifiText.setText(splitSetting[3]);
     }
 }
 

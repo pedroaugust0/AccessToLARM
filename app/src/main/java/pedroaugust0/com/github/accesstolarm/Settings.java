@@ -83,6 +83,7 @@ class Settings {
         return splitSettings;
     }
 
+
     public boolean hasSettingFile(){
 
         File file = new File(pathDir);

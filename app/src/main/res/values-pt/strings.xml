@@ -8,10 +8,14 @@
     <string name="save_message">Configurações Salvas!</string>
     <string name="settings_activity_text">Por favor, preencha as informações e clique em salvar.</string>
     <string name="settings_name">Configurações</string>
-    <string name="no_wifi_menssage">Sem acesso à Internet!</string>
+    <string name="erro_wifi_menssage">Wifi do LARM não Conectado!</string>
     <string name="open">Abrir</string>
     <string name="loading_message">Abrindo a Porta...</string>
     <string name="loading_title">Enviando Requisição</string>
     <string name="insert_data">Preencha os Dados!</string>
     <string name="error_socket">Comunicação com o Servidor Falhou!</string>
+    <string name="port_text">PORTA</string>
+    <string name="connectionOnLarm">Conectando no WIFI DO LARM!</string>
+    <string name="password_text">Senha do WIFI</string>
+    <string name="erro_wifi_password">Altere a senha do Wifi!</string>
 </resources>
