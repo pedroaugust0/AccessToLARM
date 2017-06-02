@@ -35,4 +35,4 @@ Existem algumas limitações no projeto, as quais são:
 Este projeto foi desenvolvido sob a licença Apache 2, o countéudo integral da licença pode ser encontrado [AQUI](./LICENSE).
 
 ## CONTATO
-Para entrar em contato com o desenvolvedor, pode-se utilziar o seguinte e-mail: <pedroaugust0@outlook.com>
+Para entrar em contato com o desenvolvedor, pode-se utilziar o seguinte e-mail: <pedroaugust0@live.com>
