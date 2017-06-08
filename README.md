@@ -13,7 +13,7 @@ Utiliza conexão via *Socket* com o servidor, o qual realiza uma consulta no Ban
  - Contato
 
 ## APK's
-- API menor 19 (KitKat)
+- API inferior à 19 (KitKat)
   - [2.3.1](APKs/AccessToLARM-2.3.1-API-16.apk)
 - API 19 (KitKat) ou superior
   - ~~[2.3.1](APKs/AccessToLARM-2.3.1.apk)~~
