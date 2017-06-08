@@ -5,12 +5,12 @@
 Utiliza conexão via *Socket* com o servidor, o qual realiza uma consulta no Banco de Dados e permite ou não a entrada de acordo com a **Credencial** inserida no aplicativo.
 
 ## Sumário
- - [Download do APK](APK's)
- - [Telas](*Activity*)
- - [Tradução](Tradução)
- - [Limitações](Limitações)
- - [Licença](Licença)
- - [Contato](Contato)
+ - APK's (Download)
+ - *Activity* (Telas)
+ - Tradução
+ - Limitações
+ - Licença
+ - Contato
 
 ## APK's
 - API menor 19 (KitKat)
