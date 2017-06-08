@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     TabHost abas;
     private boolean hasSettings = true;
+    private int count = 0;
 
 //  Requisitar permissão do usuário.
 
@@ -32,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_PERMISSIONS = 300;
     private boolean permissionsOfApp = false;
-    private String [] permissions = {Manifest.permission.INTERNET,
-                                Manifest.permission.ACCESS_NETWORK_STATE,
-                                Manifest.permission.CHANGE_NETWORK_STATE,
-                                Manifest.permission.ACCESS_WIFI_STATE,
-                                Manifest.permission.CHANGE_WIFI_STATE};
+    private String[] permissions = {Manifest.permission.INTERNET,
+            Manifest.permission.ACCESS_NETWORK_STATE,
+            Manifest.permission.CHANGE_NETWORK_STATE,
+            Manifest.permission.ACCESS_WIFI_STATE,
+            Manifest.permission.CHANGE_WIFI_STATE};
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -87,13 +88,15 @@ public class MainActivity extends AppCompatActivity {
             hasSettings = false;
             abas.setCurrentTab(1);
         } else {
-           updateDataSettings();
+            updateDataSettings();
         }
 
 
     }
 
     public void onOpen(View view) {
+
+        int cont = 0;
 
         if(!hasSettings){
             Toast.makeText(this, R.string.insert_data, Toast.LENGTH_SHORT).show();
@@ -116,11 +119,17 @@ public class MainActivity extends AppCompatActivity {
 
                 buttonsActionsThread.start();
                 Toast.makeText(this, R.string.open_menssage, Toast.LENGTH_SHORT).show();
+                count = 0;
                 finish();
 
             } else {
-                Toast.makeText(this, R.string.erro_wifi_menssage, Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, R.string.erro_wifi_password, Toast.LENGTH_SHORT).show();
+                if (count < 3) {
+                    Toast.makeText(this, R.string.connectionOnLarm, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.try_again, Toast.LENGTH_SHORT).show();
+                    count++;
+                } else {
+                    Toast.makeText(this, R.string.erro_wifi_password, Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
@@ -167,14 +176,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+
         if (connectivityManager.getActiveNetworkInfo() != null
                 && connectivityManager.getActiveNetworkInfo().isAvailable()
                 && connectivityManager.getActiveNetworkInfo().isConnected()){
-           connections = wifiManager.getConnectionInfo();
-           if(connections.getSSID().endsWith("\"LARM\"")) {
-               return true;
-           }
+
+
+            connections = wifiManager.getConnectionInfo();
+            if(connections.getSSID().endsWith("\"LARM\"")) {
+                return true;
+            }
         }
+
+//        wifiManager.reconnect();
         return false;
     }
 
@@ -182,13 +196,12 @@ public class MainActivity extends AppCompatActivity {
     void connectionRun(){
 
         try{
-             ConnectToServer connectToServer = new ConnectToServer(this);
-             connectToServer.openTheDoor();
+            ConnectToServer connectToServer = new ConnectToServer(this);
+            connectToServer.openTheDoor();
         } catch (Exception e) {
-             e.printStackTrace();
+            e.printStackTrace();
         }
     }
-
 
 
     public void onSave(View view) {
@@ -217,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     void updateDataSettings(){
         Settings settings = new Settings(this);
 
@@ -234,4 +246,3 @@ public class MainActivity extends AppCompatActivity {
         wifiText.setText(splitSetting[3]);
     }
 }
-

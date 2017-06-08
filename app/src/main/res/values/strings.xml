@@ -23,5 +23,8 @@
     <string name="password_text">Wifi Password:</string>
     <string name="password_example" translatable="false">KnowNothing!</string>
     <string name="erro_wifi_password">Change the Wifi Password!</string>
+    <string name="appwidget_text">Open LARM</string>
+    <string name="add_widget" translatable="false">Add widget</string>
+    <string name="try_again">Try Again!</string>
 </resources>
 

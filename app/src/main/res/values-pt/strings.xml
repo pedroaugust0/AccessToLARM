@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Abrir LARM</string>
+    <string name="app_name">Abrir o LARM</string>
     <string name="credential_text">Credencial</string>
     <string name="open_activity_text">Clique para Abrir a Porta!</string>
     <string name="open_menssage">Porta Aberta!</string>
@@ -18,4 +18,6 @@
     <string name="connectionOnLarm">Conectando no WIFI DO LARM!</string>
     <string name="password_text">Senha do WIFI</string>
     <string name="erro_wifi_password">Altere a senha do Wifi!</string>
+    <string name="appwidget_text">Abra LARM</string>
+    <string name="try_again">Tente Novamente!</string>
 </resources>

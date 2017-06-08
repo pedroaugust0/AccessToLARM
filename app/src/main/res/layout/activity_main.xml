@@ -55,6 +55,7 @@
                         android:background="@drawable/button_states"
                         android:onClick="onOpen"
                         android:text="@string/open"
+                        android:textSize="40sp"
                         android:textAllCaps="true"
                         android:layout_marginTop="84dp"
                         android:layout_below="@+id/textView2"
@@ -70,7 +71,7 @@
                     android:id="@+id/larm_image_view_open"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1.29"
+                    android:layout_weight="1.4"
                     android:scaleType="fitCenter"
                     android:src="@drawable/larm_logo" />
 
@@ -185,6 +186,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/password_text"
+                        android:textSize="12sp"
                         android:layout_gravity="center"
                         android:textAllCaps="true"
                         android:layout_margin="10dp"
