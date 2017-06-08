@@ -6,10 +6,10 @@ Utiliza conexão via *Socket* com o servidor, o qual realiza uma consulta no Ban
 
 ## APK's
 - API menor 19 (KitKat)
-        - [2.3.1](APKs/AccessToLARM-2.3.1-API-16.apk)
+  - [2.3.1](APKs/AccessToLARM-2.3.1-API-16.apk)
 - API 19 (KitKat) ou superior
-        - [2.3.1](APKs/AccessToLARM-2.3.1.apk)
-        - [2.4.1](APKs/AccessToLARM-2.4.1.apk) **RECOMENDADA**
+  - ~~[2.3.1](APKs/AccessToLARM-2.3.1.apk)~~
+  - [2.4.1](APKs/AccessToLARM-2.4.1.apk)
 
 ## *Activity*
 O aplicativo possui uma *Activity* divida em duas Aba:
