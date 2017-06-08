@@ -4,12 +4,20 @@
 
 Utiliza conexão via *Socket* com o servidor, o qual realiza uma consulta no Banco de Dados e permite ou não a entrada de acordo com a **Credencial** inserida no aplicativo.
 
+## Sumário
+ - [Download do APK](APK's)
+ - [Telas](*Activity*)
+ - [Tradução](Tradução)
+ - [Limitações](Limitações)
+ - [Licença](Licença)
+ - [Contato](Contato)
+
 ## APK's
 - API menor 19 (KitKat)
   - [2.3.1](APKs/AccessToLARM-2.3.1-API-16.apk)
 - API 19 (KitKat) ou superior
-  - ~~[2.3.1](APKs/AccessToLARM-2.3.1.apk)~~
-  - [2.4.1](APKs/AccessToLARM-2.4.1.apk)
+  - ~~[2.3.1](APKs/AccessToLARM-2.3.1.apk)~~
+  - [2.4.1](APKs/AccessToLARM-2.4.1.apk)
 
 ## *Activity*
 O aplicativo possui uma *Activity* divida em duas Aba:
@@ -35,9 +43,7 @@ O aplicativo possui tradução integral para o Português BR e para *English* US
 Existem algumas limitações no projeto, as quais são:
    - O usuário não é informado quando há um problema de comunicação via *Socket* com o servidor.
    - Não há comunicação entre o servidor e o aplicativo, a comunicação é apenas na direção Aplicativo -> Servidor.
-   - Não há um pop-up (*Toast*) dizendo que a porta foi aberta, só o encerramento do aviso (*loading*) na tela do aplicativo.
-
-
+  
 ## LICENÇA 
 Este projeto foi desenvolvido sob a licença Apache 2, o countéudo integral da licença pode ser encontrado [AQUI](./LICENSE).
 
