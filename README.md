@@ -3,7 +3,10 @@
 É um aplicativo para abrir a porta do Laboratório de Automação é Robótica Móvel (LARM), desenvolvido no Android Studio, com Android 4.4 (*KitKat*) como versão mínima requerida.
 
 Utiliza conexão via *Socket* com o servidor, o qual realiza uma consulta no Banco de Dados e permite ou não a entrada de acordo com a **Credencial** inserida no aplicativo.
- 
+
+## APK's
+        
+
 ## *Activity*
 O aplicativo possui uma *Activity* divida em duas Aba:
    - **Abrir**:
@@ -11,7 +14,7 @@ O aplicativo possui uma *Activity* divida em duas Aba:
         
         Imagem da Aba 1:
         
-        ![Abrir](https://uploaddeimagens.com.br/images/000/919/947/original/A2L-open.jpg?1495028925)
+        ![Abrir](https://uploaddeimagens.com.br/images/000/944/963/original/A2L-open.jpg?1496938328)
 
   
    - **Configurações**:
@@ -19,7 +22,7 @@ O aplicativo possui uma *Activity* divida em duas Aba:
          
         Imagem da Aba 2:
         
-        ![Configuraçes](https://uploaddeimagens.com.br/images/000/919/949/original/A2L-settings.jpg?1495028966)
+        ![Configuraçes](https://uploaddeimagens.com.br/images/000/944/964/original/A2L-settings.jpg?1496938375)
 
 ## Tradução
 O aplicativo possui tradução integral para o Português BR e para *English* US
