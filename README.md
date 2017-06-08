@@ -5,7 +5,11 @@
 Utiliza conexão via *Socket* com o servidor, o qual realiza uma consulta no Banco de Dados e permite ou não a entrada de acordo com a **Credencial** inserida no aplicativo.
 
 ## APK's
-        
+- API menor 19 (KitKat)
+        - [2.3.1](APKs/AccessToLARM-2.3.1-API-16.apk)
+- API 19 (KitKat) ou superior
+        - [2.3.1](APKs/AccessToLARM-2.3.1.apk)
+        - [2.4.1](APKs/AccessToLARM-2.4.1.apk) **RECOMENDADA**
 
 ## *Activity*
 O aplicativo possui uma *Activity* divida em duas Aba:
@@ -18,7 +22,7 @@ O aplicativo possui uma *Activity* divida em duas Aba:
 
   
    - **Configurações**:
-        Com três campos,  ``IP``, ``HOST``, ``CREDENCIAL``, onde o priemiro e o segundo são para inserir os dados do servidor, e o terceiro a credencial que será enviada, e com o botõa ``SALVAR`` o qual salvará os dados, de forma que só é necessário inseri-los uma vez.
+        Com quatro campos,  ``IP``, ``PORT``, ``CREDENCIAL``, ``Wifi Password`` onde o priemiro e o segundo são para inserir os dados do servidor, e o terceiro a credencial que será enviada, o quarto campo é para inserir a senha do Wifi do LARM, e com o botõa ``SALVAR`` o qual salvará os dados, de forma que só é necessário inseri-los uma vez.
          
         Imagem da Aba 2:
         
